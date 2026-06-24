@@ -2,7 +2,6 @@ This is a unofficial starting template for the [Raylib 6.x Game Jam](https://itc
 
 ## Requirements
 - Zig 0.16.0
-- [raylib-zig](https://github.com/raylib-zig/raylib-zig/)
 
 ## To get this running
 1. Clone this repo
