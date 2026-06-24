@@ -39,9 +39,10 @@ pub fn build(b: *std.Build) !void {
             .optimize = optimize,
             .flags = emcc_flags,
             .settings = emcc_settings,
-            .shell_file_path = emsdk.shell(raylib_dep),
+            .shell_file_path = emsdk.shell(b.dependency("raylib", .{})),
             .install_dir = install_dir,
-            // .embed_paths = &.{.{ .src_path = "assets/" }}, // need to add assets to folder and use them otherwise won't compile "Nothing to do"
+            // Need to add assets to folder and use them otherwise the project won't compile: "Nothing to do"
+            // .embed_paths = &.{.{ .src_path = "assets/" }},
         });
 
         b.getInstallStep().dependOn(emcc_step);
@@ -60,6 +61,7 @@ pub fn build(b: *std.Build) !void {
             .name = "rayjam game",
             .root_module = exe_mod,
         });
+
         b.installArtifact(exe);
 
         const run_cmd = b.addRunArtifact(exe);
